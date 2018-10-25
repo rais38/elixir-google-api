@@ -51,7 +51,7 @@ defmodule GoogleApi.Gax.Connection do
       def new(token) when is_binary(token) do
         Tesla.build_client([
           {Tesla.Middleware.Headers, [{"authorization", "Bearer #{token}"}]}
-        ])
+        ], Tesla.Adapter.Ibrowse)
       end
 
       @doc """
@@ -81,7 +81,7 @@ defmodule GoogleApi.Gax.Connection do
       """
       @spec new() :: Tesla.Client.t()
       def new do
-        Tesla.build_client([])
+        Tesla.build_client([], Tesla.Adapter.Ibrowse)
       end
 
       @doc """
